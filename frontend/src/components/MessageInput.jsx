@@ -5,7 +5,7 @@ import { Image } from 'lucide-react'
 import { Send } from 'lucide-react'
 import { X } from 'lucide-react'
 
- const Messageinput = () => {
+ const MessageInput = () => {
     const [text,setText] = useState("")
     const [imagePreview,setImagePreview] = useState(null)
     const fileInputRef = useRef(null)
@@ -110,4 +110,4 @@ import { X } from 'lucide-react'
   );
 }
 
-export default Messageinput
+export default MessageInput
