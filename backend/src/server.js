@@ -22,7 +22,7 @@ app.use(cors({
 if(process.env.NODE_ENV==="production"){
   app.use(express.static(path.join(_dirname,"../frontend/dist")))
 
-  app.get('*',(req,res)=>{
+  app.get('*',(res)=>{
     res.sendFile(path.join(_dirname,"../frontend","dist","index.html"))
   })
 }
@@ -35,6 +35,6 @@ app.use("/api/messages",messageRoutes)
 
 server.listen(PORT,()=>{
     connectDB()
-    console.log(`server running at port ${PORT}`);
+    console.log(`Backend server running at port ${PORT} & Frontend Working at `);
     
 })
