@@ -6,7 +6,7 @@ import {io} from "socket.io-client"
     
 export const useAuthStore = create((set,get)=>{
 
-    const BASE_URL = import.meta.env.MODE==="production"?"http://localhost:5001":"/"
+    const BASE_URL = import.meta.env.MODE==="development"?"http://localhost:5001":"/"
    return { 
     authUser :null,
     isSigningUp:false,
@@ -63,7 +63,6 @@ export const useAuthStore = create((set,get)=>{
         set({isLoggingIn:true})
         try {
             const res= await axiosInstance.post("/auth/login",data)
-            console.log(res.data)
             set({authUser:res.data})
             toast.success("Logged in successfully!");
             console.log("going to connect to socket");
