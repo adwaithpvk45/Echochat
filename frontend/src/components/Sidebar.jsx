@@ -18,6 +18,8 @@ const Sidebar = () => {
     ? users.filter((user) => onlineUsers.includes(user._id))
     : users;
 
+    console.log(filteredUsers)
+
   if (isUsersLoading) return <SidebarSkeleton />;
 
   return (
@@ -44,7 +46,8 @@ const Sidebar = () => {
     </div>
 
     <div className="overflow-y-auto w-full py-3">
-      {filteredUsers.map((user) => (
+      {
+      filteredUsers.map((user) => (
         <button
           key={user._id}
           onClick={() => setSelectedUser(user)}

@@ -9,7 +9,7 @@ import { app,io,server } from "./lib/socket.js"
 import path from "path"
 dotenv.config()
 
-const _dirname = path.resolve()
+const __dirname = path.resolve()
 
 app.use(cookieParser())
 app.use(express.json())
@@ -20,10 +20,10 @@ app.use(cors({
 
 
 if(process.env.NODE_ENV==="production"){
-  app.use(express.static(path.join(_dirname,"../frontend/dist")))
+  app.use(express.static(path.join(__dirname,"../frontend/dist")))
 
   app.get('*',(req,res)=>{
-    res.sendFile(path.join(_dirname,"../frontend","dist","index.html"))
+    res.sendFile(path.join(__dirname,"../frontend","dist","index.html"))
   })
 }
 
@@ -35,6 +35,6 @@ app.use("/api/messages",messageRoutes)
 
 server.listen(PORT,()=>{
     connectDB()
-    console.log(`Backend server running at port ${PORT} & Frontend Working at `);
+    console.log(`Backend server running at port ${PORT} & Frontend Working `);
     
 })

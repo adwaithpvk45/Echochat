@@ -6,7 +6,7 @@ import {io} from "socket.io-client"
     
 export const useAuthStore = create((set,get)=>{
 
-    const BASE_URL = import.meta.env.MODE==="development"?"http://localhost:5001":"/"
+    const BASE_URL = import.meta.env.MODE==="production"?"http://localhost:5001":"/"
    return { 
     authUser :null,
     isSigningUp:false,
@@ -19,6 +19,7 @@ export const useAuthStore = create((set,get)=>{
     checkAuth : async()=>{ // for checking if the people are authenticated while refreshing the page
         try {
             const res = await axiosInstance.get("/auth/check")
+            console.log(res)
             set({authUser:res.data.user})
             get().connectSocket()
             console.log("the response is fetching : " + res.data.message)
@@ -62,6 +63,7 @@ export const useAuthStore = create((set,get)=>{
         set({isLoggingIn:true})
         try {
             const res= await axiosInstance.post("/auth/login",data)
+            console.log(res.data)
             set({authUser:res.data})
             toast.success("Logged in successfully!");
             console.log("going to connect to socket");
@@ -90,6 +92,8 @@ export const useAuthStore = create((set,get)=>{
     connectSocket:(userId) =>{
         // For connecting to backend websocket 
         const {authUser} = get()
+
+        console.log(userId)
 
         if(!authUser||get().socket?.connected) return; //checking if already connected with websocket
       
