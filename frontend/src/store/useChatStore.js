@@ -3,7 +3,7 @@ import { axiosInstance } from "../lib/axios";
 import toast from "react-hot-toast";
 import { useAuthStore } from "./useAuthStore";
 
-export const useChatStore =create((set,get)=>
+export const useChatStore =create((set,get)=> // set is used to set the variable value and get used to fetch the variables in the store
     (
     {
     isUsersLoading:false, 
@@ -19,7 +19,6 @@ export const useChatStore =create((set,get)=>
         const res= await axiosInstance.get("/messages/users")
         console.log(res.data)
         set({users:res.data})
-
         console.log(res)
     }catch(error){
         console.log("An error in fetching or sending req")
@@ -41,8 +40,9 @@ export const useChatStore =create((set,get)=>
             set({isMessagesLoading:false})
         }
     },
+    
     sendMessages:async(messageData)=>{
-        const {selectedUser,messages} = get()
+        const {selectedUser,messages} = get() 
         console.log(messageData)
         try {
              const res= await axiosInstance.post(`messages/send/${selectedUser._id}`,messageData)
@@ -53,13 +53,14 @@ export const useChatStore =create((set,get)=>
 
     },
     subscribeToMessages :()=>{
+
          const {selectedUser} = get();
          if(!selectedUser) return;
 
-         const socket = useAuthStore.getState().socket
+         const socket = useAuthStore.getState().socket // this is used to obtain socket variable(containing the connection data) from the useAuthStore not the module socket
 
-         socket.on("newMessage",(newMessage)=>{
-            set({
+         socket.on("newMessage",(newMessage)=>{ //listening to newMessage socket connection from backend and got the newMessage instantly
+            set({ 
                 messages:[...get().messages,newMessage]
             })
 

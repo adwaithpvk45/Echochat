@@ -55,9 +55,8 @@ export const sendMessages = async(req,res) =>{
              Image:imageUrl
         }
     )
-
     await newMessage.save()
-
+    
     //next we need to do real time functionality using socket.io
      
     const receiverSocketId = getReceiverSocketId(userId)

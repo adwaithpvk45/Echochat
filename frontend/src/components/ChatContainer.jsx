@@ -14,7 +14,7 @@ import {formatMessageTime} from '../lib/utils'
 
     useEffect(()=>{
         getMessages(selectedUser._id)
-        subscribeToMessages();
+        subscribeToMessages(); // used in useEffect beacuse we need get the messages instantly and be shown 
         return ()=> unsubscribeFromMessages()
     },[selectedUser._id,getMessages,subscribeToMessages,unsubscribeFromMessages])
 

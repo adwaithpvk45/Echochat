@@ -18,7 +18,7 @@ const App = () => {
 
   useEffect(()=>{
     checkAuth()
-  },[checkAuth])
+  },[checkAuth]) // for checking the authentication ie have been logged in or not, but not using jwt, using authUser in useAuthstore
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
@@ -33,7 +33,7 @@ const App = () => {
 
   return(
     
-   <div> 
+   <div data-theme={theme}> 
 
    <Toaster position="top-center" />
    <Navbar/>
