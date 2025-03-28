@@ -80,7 +80,7 @@ const LoginPage = () => {
                 {showPassword?<EyeOff className='size-5 text-base-content/40'/>:<Eye className='size-5 text-base-content/40'/>}
               </button>
             </div>
-            <button className="btn btn-xs sm:btn-sm md:btn-md lg:btn-lg xl:btn-xl w-full pl-10" type="submit" disabled={isSubmitting}>
+            <button className="btn btn-md lg:btn-lg xl:btn-xl w-full pl-10" type="submit" disabled={isSubmitting}>
               {isSubmitting?(<>
               <Loader className='size-5 animate-spin'/>
               Loading ...
