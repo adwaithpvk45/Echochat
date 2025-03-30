@@ -43,7 +43,9 @@ export const sendMessages = async(req,res) =>{
 
     let imageUrl
     if(image){
-        const uploadResponse= await cloudinary.uploader.upload(image)
+        const uploadResponse= await cloudinary.uploader.upload(image,{
+            folder:"chat"
+        })
         imageUrl = uploadResponse.secure_url
     }
 
